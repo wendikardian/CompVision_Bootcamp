@@ -1,6 +1,6 @@
 import cv2
 import mediapipe as mp
-import time
+# import time
 from mediapipe.python._framework_bindings import packet
 
 class handDetector:
