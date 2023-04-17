@@ -1,7 +1,7 @@
 import cv2
 import mediapipe as mp
 # import time
-from mediapipe.python._framework_bindings import packet
+# from mediapipe.python._framework_bindings import packet
 
 class handDetector:
     def __init__(self, static_mode=False, maxhands=2, detection_confident= 0.5, tracking_confident=0.5):
@@ -27,18 +27,18 @@ class handDetector:
 
         return frame
 
-    def gethandlocation(self, frame, handNo=0, draw_landmark=True):
-        lmlist = []
+    def getHandLocation(self, frame, handNo=0, draw_landmark=True):
+        lmList = []
         if self.results.multi_hand_landmarks:
-            myhand = self.results.multi_hand_landmarks[handNo]
+            myHand = self.results.multi_hand_landmarks[handNo]
 
-            for idx,lm in enumerate(myhand.landmark):
+            for idx,lm in enumerate(myHand.landmark):
                 h,w,c = frame.shape
+                print(h,w,c)
                 cx,cy = int(lm.x*w), int(lm.y*h)
-
-                lmlist.append([idx,cx,cy])
+                lmList.append([idx,cx,cy])
                 if draw_landmark:
                     cv2.circle(frame, (cx,cy), 5, (255,0,255), cv2.FILLED)
 
-        return lmlist
+        return lmList
 
