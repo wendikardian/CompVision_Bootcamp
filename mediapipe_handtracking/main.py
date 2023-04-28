@@ -3,11 +3,14 @@ import time
 import HandDetection as hd
 handDetect = hd.handDetector(detection_confident=0.8)
 
-# cap = cv2.VideoCapture("video3.mp4")
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture("video3.mp4")
+# cap = cv2.VideoCapture(0)
 top_idx = [4,8,12,16,20]
 previous_time = 0
 current_time = 0
+
+
+# can you create a function to convert frame to a threshoold
 
 while True:
     ret, frame = cap.read()
@@ -27,6 +30,10 @@ while True:
             else:
                 fingers.append(0)
         print(fingers)
+        openFingers = fingers.count(1)
+        cv2.rectangle(frame, (20,20),(200,200),(255,255,255),cv2.FILLED)
+        cv2.putText(frame, str(int(openFingers)), (50,170), cv2.FONT_HERSHEY_PLAIN, 10, (255,0,0), 25)
+
     current_time = time.time()
     fps = 1 / (current_time - previous_time)
     previous_time = current_time

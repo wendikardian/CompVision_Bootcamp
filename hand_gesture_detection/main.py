@@ -11,6 +11,8 @@ current_time = 0
 handdetect = hd.handDetector(detection_confident=0.8)
 top_idx = [4,8,12,16,20]
 
+
+
 while True:
     check, frame = cap.read()
     frame = cv2.flip(frame, 1)
@@ -29,11 +31,9 @@ while True:
             else:
                 fingers.append(0)
         print(fingers)
-
         openfingers = fingers.count(1)
         cv2.rectangle(frame, (20,20),(200,200),(255,255,255),cv2.FILLED)
         cv2.putText(frame, str(int(openfingers)), (50,170), cv2.FONT_HERSHEY_PLAIN, 10, (255,0,0), 25)
-
         if fingers[1] and fingers[2] and fingers.count(1) == 2:
             cv2.putText(frame, "Peace", (50,270), cv2.FONT_HERSHEY_PLAIN, 3, (0,255,0), 3)
         elif fingers[0] and fingers.count(1) == 1:

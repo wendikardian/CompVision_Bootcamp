@@ -1,0 +1,14 @@
+
+--- In the book must start with mediapipe facial mesh ...
+--- dont forget to review the prev meeting about hand landmark
+---
+
+
+-- meeting 4 more focus about mediapipe facial mesh ... load the camera ... and using mediapipe facial mesh ...
+and then after all of those continue to extract the coordinat to find the emotion of the frames
+
+-- in the meeting 5 more focus about tensorflow and keras framework and then start to load the emotion of the video frames
+
+1. Start with import library mediapipe, numpy, openCV, etc
+
+2.

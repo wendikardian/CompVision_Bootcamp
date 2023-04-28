@@ -30,8 +30,8 @@ model = load_model(emotion_model_path, compile=False)
 
 # For webcam input:
 drawing_spec = mp_drawing.DrawingSpec(thickness=1, circle_radius=1)
-# cap = cv2.VideoCapture(0)
-cap = cv2.VideoCapture("vid1.mp4")
+cap = cv2.VideoCapture(0)
+# cap = cv2.VideoCapture("vid1.mp4")
 
 
 with mp_face_mesh.FaceMesh(
