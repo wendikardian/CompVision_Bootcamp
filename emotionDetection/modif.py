@@ -126,3 +126,4 @@ with mp_face_mesh.FaceMesh(
             break
 
 cap.release()
+cv2.destroyAllWindows()

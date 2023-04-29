@@ -7,7 +7,6 @@ cap = cv2.VideoCapture("video4.mp4")
 cap = cv2.VideoCapture(0)
 previous_time = 0
 current_time = 0
-
 handdetect = hd.handDetector(detection_confident=0.8)
 top_idx = [4,8,12,16,20]
 
