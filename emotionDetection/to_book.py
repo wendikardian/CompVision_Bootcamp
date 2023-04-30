@@ -2,7 +2,7 @@ import mediapipe as mp
 import numpy as np
 import cv2
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture("vid1.mp4")
 
 mp_face_mesh = mp.solutions.face_mesh
 mp_drawing = mp.solutions.drawing_utils
@@ -31,7 +31,10 @@ with mp_face_mesh.FaceMesh(
                 cx_min=  w
                 cy_min = h
                 cx_max= cy_max= 0
+                print(face_landmarks.landmark)
+                # print(cx_min, cy_min, cx_max, cy_max)
                 for id, lm in enumerate(face_landmarks.landmark):
+                    # print(lm.x, lm.y)
                     cx, cy = int(lm.x * w), int(lm.y * h)
                     if cx<cx_min:
                         cx_min=cx
@@ -41,6 +44,7 @@ with mp_face_mesh.FaceMesh(
                         cx_max=cx
                     if cy>cy_max:
                         cy_max=cy
+                # print(cx_min, cy_min, cx_max, cy_max)
                 detected_face = frame[int(cy_min):int(cy_max), int(cx_min):int(cx_max)]
                 detected_face = cv2.cvtColor(
                     detected_face, cv2.COLOR_BGR2GRAY)

@@ -51,11 +51,11 @@ with mp_face_mesh.FaceMesh(
         frame = cv2.cvtColor(cv2.flip(frame, 1), cv2.COLOR_BGR2RGB)
         # To improve performance, optionally mark the frame as not writeable to
         # pass by reference.
-        frame.flags.writeable = False
+        # frame.flags.writeable = False
         results = face_mesh.process(frame)
 
         # Draw the face mesh annotations on the image.
-        frame.flags.writeable = True
+        # frame.flags.writeable = True
         frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
         if results.multi_face_landmarks:
