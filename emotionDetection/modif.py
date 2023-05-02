@@ -1,12 +1,12 @@
 import silence_tensorflow.auto
-from tensorflow.compat.v1 import ConfigProto
-from tensorflow.compat.v1 import InteractiveSession
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing import image as img_keras
 from collections import deque
 import mediapipe as mp
 import numpy as np
 import cv2
+from tensorflow.compat.v1 import ConfigProto
+from tensorflow.compat.v1 import InteractiveSession
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing import image as img_keras
 
 
 config = ConfigProto()
@@ -16,22 +16,23 @@ session = InteractiveSession(config=config)
 
 mp_drawing = mp.solutions.drawing_utils
 mp_face_mesh = mp.solutions.face_mesh
-Q = deque(maxlen=10)
-writer = None
 
+
+Q = deque(maxlen=10)
 # parameters for loading data and images
 emotions = ("Angry", "Disgusted", "Feared", "Happy", "Sad", "Surprise", "Neutral")
 emotion_model_path = 'models/_trained.hdf5'
 out_video_path = 'output/video.avi'
+model = load_model(emotion_model_path, compile=False)
 
 # loading models
-model = load_model(emotion_model_path, compile=False)
 
 
 # For webcam input:
 drawing_spec = mp_drawing.DrawingSpec(thickness=1, circle_radius=1)
-cap = cv2.VideoCapture(0)
-# cap = cv2.VideoCapture("vid1.mp4")
+cap = cv2.VideoCapture("vid1.mp4")
+# cap = cv2.VideoCapture(0)
+writer = None
 
 
 with mp_face_mesh.FaceMesh(
@@ -116,7 +117,7 @@ with mp_face_mesh.FaceMesh(
             # initialize our video writer
             h, w, c = frame.shape
             fourcc = cv2.VideoWriter_fourcc('D', 'I', 'V', 'X')
-            writer = cv2.VideoWriter(out_video_path, fourcc, 20, (w, h), True)
+            writer = cv2.VideoWriter('output.avi', fourcc, 20, (w, h), True)
 
         # write the output frame to disk
         writer.write(frame)
